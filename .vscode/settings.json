@@ -1,0 +1,19 @@
+{
+    "files.exclude": {
+        ".metadata": true,
+        "analysis_options.yaml": true,
+        "crowdilm.iml": true,
+        "LICENSE": true,
+        "pubspec.lock": true,
+    },
+    "dart.lineLength": 150,
+    "editor.formatOnSave": true,
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "explorer.excludeGitIgnore": true,
+    "[dart]": {
+        "editor.rulers": [
+            150
+        ]
+    },
+}
