@@ -4,6 +4,8 @@ import 'package:shelf/shelf.dart';
 import 'package:shelf/shelf_io.dart';
 import 'package:shelf_router/shelf_router.dart';
 
+String baseFilePath = "";
+
 // Configure routes.
 final _router = Router()
   ..get('/', (req) => Response.ok('Server is running'))
@@ -17,7 +19,8 @@ Future<Response> _allHandler(Request request) async {
     _ => ('json', 'application/json'),
   };
 
-  var filePath = '${Directory.current.path}/files/${request.url.path}.$extension';
+  // var filePath = '${Directory.current.path}/files/${request.url.path}.$extension';
+  var filePath = '$baseFilePath/${request.url.path}.$extension';
   var file = File(filePath);
 
   if (await file.exists()) {
@@ -28,6 +31,7 @@ Future<Response> _allHandler(Request request) async {
 }
 
 void main(List<String> args) async {
+  baseFilePath = args[0];
   final server = await serve(
       Pipeline().addMiddleware(logRequests()).addHandler(_router.call), // Configure a pipeline that logs requests.
       InternetAddress.anyIPv4, // Use any available host or container IP (usually `0.0.0.0`).
